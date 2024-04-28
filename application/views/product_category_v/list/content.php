@@ -52,8 +52,11 @@
                     <td><?php echo $item->id ;?></td>
                     <td><?php echo $item->title ;?></td>
                     <td><?php echo $item->is_active == 1 ? "aktif":"pasif";?></td>
-                    <td><?php echo $item->created_at ;?></td>
-                    <td><?php ?></td>
+                    <td><?php echo dateTimeFormat($item->created_at);?></td>
+                    <td> 
+                      <a href="<?php echo base_url("product_category/delete/$item->id")?>" class="btn btn-danger">Sil</a>  
+                      <a href="<?php echo base_url("product_category/updateForm/$item->id")?>" class="btn btn-info">Güncelle</a>
+                    </td>
                   </tr> 
                   <?php }?>
                     </tbody>
