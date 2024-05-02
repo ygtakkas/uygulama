@@ -1,18 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class branches extends CI_Controller {
+class brands extends CI_Controller {
 	public $viewFolder="";
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model("branches_model");
-		$this->viewFolder="branches_v";
+		$this->load->model("brands_model");
+		$this->viewFolder="brands_v";
 	}
 
 	public function index()
 	{
-		$items = $this->branches_model->getAll();
+		$items = $this->brands_model->getAll();
 		
 		$viewData = new stdClass();
 		$viewData->viewFolder=$this->viewFolder;
@@ -35,7 +35,6 @@ class branches extends CI_Controller {
 
 		//kurallar
 		$this->form_validation->set_rules("title", "Marka Adı ","required|trim");
-		$this->form_validation->set_rules("adress", "Marka Adresi ","required|trim");
 		//mesajlar
 		$this->form_validation->set_message(
 			array(
@@ -49,11 +48,10 @@ class branches extends CI_Controller {
 			//echo "Kayıt başarılı";
 			$data=array(
 				"title"=>$this->input->post("title"),
-				"adress"=>$this->input->post("adress")
 			);
-			$insert=$this->branches_model->add($data);
+			$insert=$this->brands_model->add($data);
 			if($insert){
-				redirect(base_url("branches"));
+				redirect(base_url("brands"));
 			}
 			else{
 				echo "Kayıt sırasında hata";
@@ -70,7 +68,7 @@ class branches extends CI_Controller {
 	}
 
 	public function updateForm($id){
-		$item=$this->branches_model->get(
+		$item=$this->brands_model->get(
 			array(
 				"id"=>$id
 			)
@@ -87,7 +85,6 @@ class branches extends CI_Controller {
 
 		//kurallar
 		$this->form_validation->set_rules("title", "Marka Adı ","required|trim");
-		$this->form_validation->set_rules("adress", "Marka Adresi ","required|trim");
 		//mesajlar
 		$this->form_validation->set_message(
 			array(
@@ -101,9 +98,8 @@ class branches extends CI_Controller {
 			//echo "Kayıt başarılı";
 			$data=array(
 				"title"=>$this->input->post("title"),
-				"adress"=>$this->input->post("adress")
 			);
-			$update=$this->branches_model->update(
+			$update=$this->brands_model->update(
 				array(
 					"id"=>$id
 				),$data
@@ -111,14 +107,14 @@ class branches extends CI_Controller {
 
 
 			if($update){
-					redirect(base_url("branches"));
+					redirect(base_url("brands"));
 			}
 			else{
 				echo "basarısız";
 			}
 		}
 		else {
-			$item=$this->branches_model->get(
+			$item=$this->brands_model->get(
 				array(
 					"id"=>$id
 				)
@@ -135,7 +131,7 @@ class branches extends CI_Controller {
 		$data=array(
 			"id"=>$id
 		);
-		$this->branches_model->delete($data);
-		redirect(base_url("branches"));
+		$this->brands_model->delete($data);
+		redirect(base_url("brands"));
 	}
 }?>

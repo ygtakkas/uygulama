@@ -24,18 +24,12 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form class="form-horizontal" method="POST" action="<?php echo base_url("branches/save")?>">
+              <form class="form-horizontal" method="POST" action="<?php echo base_url("brands/save")?>">
                 <div class="card-body">
                   <div class="form-group row">
                     <label for="category" class="col-sm-2 col-form-label">Marka Adı</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="title" id="branches" placeholder=" Marka Adı Giriniz">
-                    </div>
-                  </div>
-                  <div class="form-group row">
-                    <label for="category" class="col-sm-2 col-form-label">Marka Adresi</label>
-                    <div class="col-sm-10">
-                      <input type="text" class="form-control" name="adress" id="branches" placeholder=" Marka Adresini Giriniz">
+                      <input type="text" class="form-control" name="title" id="brands" placeholder=" Marka Adı Giriniz">
                     </div>
                   </div>
                   <?php if(isset($formError)){?>
@@ -45,7 +39,7 @@
                 <!-- /.card-body -->
                 <div class="card-footer">
                   <button type="submit" class="btn btn-info">Kaydet</button>
-                  <a href="<?php echo base_url("branches")?>" class="btn btn-default float-right">İptal</a>
+                  <a href="<?php echo base_url("brands")?>" class="btn btn-default float-right">İptal</a>
                 </div>
                 <!-- /.card-footer -->
               </form>
