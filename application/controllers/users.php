@@ -97,11 +97,17 @@ class users extends CI_Controller {
 		$this->load->library("form_validation");
 
 		//kurallar
-		$this->form_validation->set_rules("title", "Marka Adı ","required|trim");
+		$this->form_validation->set_rules("email", "Eposta doldurulmalıdır ","required|trim|valid_email|is_unique[users.email]");
+		$this->form_validation->set_rules("name", "Ad doldurulmalıdır ","required|trim");
+		$this->form_validation->set_rules("surname", "Soyad doldurulmalıdır ","required|trim");
+		$this->form_validation->set_rules("password", "Şifre doldurulmalıdır ","required|trim");
 		//mesajlar
 		$this->form_validation->set_message(
 			array(
-			"required"=>"<b>{field}</b>  Alanı Doldurulmalıdır"
+				"required"=>"<b>{field}</b>  Alanı Doldurulmalıdır",
+				"valid_email"=>"<b>{field}</b> Geçerli eposta değildir",
+				"is_unique"=>"<b>{field}</b> daha önceden kayıtlıdır",
+				"matches"=>" şifreler birbiriyle aynı değil"
 			)
 		);
 		//calıstırılnası
@@ -110,7 +116,11 @@ class users extends CI_Controller {
 		if($validate){
 			//echo "Kayıt başarılı";
 			$data=array(
-				"title"=>$this->input->post("title"),
+				"email"=>$this->input->post("email"),
+				"name"=>$this->input->post("name"),
+				"surname"=>$this->input->post("surname"),
+				"password"=>md5($this->input->post("password")),
+				"is_active"=>1
 			);
 			$update=$this->users_model->update(
 				array(
